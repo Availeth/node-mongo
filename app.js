@@ -1,7 +1,18 @@
-require("express")
+const express = require("express")
 const app = express()
-const tasks = require("./routes/tasks")
-const connectDB = require("./db/connect")
+const tasks = require("./routes/tasks.route")
+const cors = require('cors')
+require('dotenv').config();
+const mongoose = require("mongoose");
+// const connectDB = require("./db/connect")
+
+//mongoDB
+const URI = process.env.MONGO_URI
+mongoose.connect(URI).then(console.log('mongoose connected'));
+
+
+//cors
+app.use(cors())
 
 // middleware
 app.use(express.json());
